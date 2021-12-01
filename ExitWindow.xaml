@@ -1,0 +1,34 @@
+﻿<Window x:Class="WheelOfFortune.ExitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WheelOfFortune"
+        mc:Ignorable="d"
+        Title="ExitWindow" Height="300" Width="600"
+        Background="{StaticResource WindowBackground}"
+        WindowStyle="None"
+        BorderBrush="White"
+        BorderThickness="4"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="Are you sure want to quit?"
+               FontSize="34" FontFamily="{StaticResource MainFont}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"
+                   Foreground="{StaticResource FontGradient}"/>
+        <Button Name="Yes" Style="{StaticResource ButtonNormal}" Grid.Row="1" Grid.Column="1" Content="Yes" Click="Yes_Click"/>
+        <Button Name="No" Style="{StaticResource ButtonCancel}"  Grid.Row="1" Grid.Column="3" Content="No" Click="No_Click"/>
+    </Grid>
+</Window>

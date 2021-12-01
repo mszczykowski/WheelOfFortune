@@ -1,0 +1,27 @@
+﻿<Page x:Class="WheelOfFortune.SplashScreen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WheelOfFortune"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="SplashScreen">
+    <Grid Background="{StaticResource WindowBackground}">
+        <Grid Margin="60">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Source="/Resources/Images/logo.png"/>
+
+            <TextBlock Grid.Row="1" FontSize="25" Text="Michał Szczykowski 2021" 
+                   FontFamily="{StaticResource MainFont}"
+                   Foreground="{StaticResource FontGradient}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+        </Grid>
+        <Canvas Name="fadeCanvas"></Canvas>
+    </Grid>
+</Page>
