@@ -41,6 +41,19 @@ namespace WheelOfFortune
             return result;
         }
 
+        public List<int> GetCoveredPositions()
+        {
+            List<int> positions = new List<int>();
+            for (int i = 0; i < _puzzle.Count; i++)
+            {
+                if (_puzzle[i].IsCovered)
+                {
+                    positions.Add(i);
+                }
+            }
+            return positions;
+        }
+
         public string PuzzleToString()
         {
             string result = "";
@@ -51,8 +64,22 @@ namespace WheelOfFortune
             }
             return result;
         }
-    }
 
+        public bool IsAnswerCorrect(Answer answer)
+        {
+            int i = 0;
+            foreach (var l in _puzzle)
+            {
+                if(l.IsCovered)
+                {
+                    if (l.Character != answer.letters[i]) return false;
+                    i++;
+                }
+            }
+            return true;
+        }
+    }
+    
     class Letter
     {
         public char Character { get => _character; }

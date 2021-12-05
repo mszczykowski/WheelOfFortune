@@ -10,7 +10,7 @@ namespace WheelOfFortune
     {
         public double ImageShift { get => _imageShift; }
         public double FinalAngle { get => _rotationAngle + _previousAngle; }
-        public int CurrentPick { get => _currentPick; }
+        public int CurrentPrize { get => _currentPrize; }
         public double PreviousAngle { get => _previousAngle; }
 
 
@@ -28,7 +28,7 @@ namespace WheelOfFortune
         private double _imageShift;
         private double _rotationAngle;
         private double _currentPositon;
-        private int _currentPick;
+        private int _currentPrize;
         private int minAngle = 800;
         private int maxAngle = 1800;
 
@@ -52,23 +52,29 @@ namespace WheelOfFortune
 
             int pick = (int)(_currentPositon / _valueSpan);
 
-            _currentPick = values[pick];
-            if(_currentPick == 1000000)
+            _currentPrize = values[pick];
+            if(_currentPrize == 1000000)
             {
                 double precisePick = _currentPositon % _valueSpan;
                 double smallValueSpan = _valueSpan / 3;
                 if (precisePick <= smallValueSpan || precisePick > (2 * smallValueSpan))
                 {
-                    _currentPick = 0;
+                    _currentPrize = 0;
                 }
             }
         }
 
-        public String CurrentPickToString()
+        public String CurrentPrizeDisplayToString()
         {
-            if (_currentPick == 0) return "Bankrupt!";
-            else if (_currentPick == -1) return "Lose a turn!";
-            else return _currentPick + "$";
+            if (_currentPrize == 0 || _currentPrize == -1) return "0$";
+            else return _currentPrize + "$";
+        }
+
+        public String CurrentPrizeToString()
+        {
+            if (_currentPrize == 0) return "Bankrupt!";
+            else if (_currentPrize == -1) return "Lose a turn!";
+            else return _currentPrize + "$";
         }
     }
 }

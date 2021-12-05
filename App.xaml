@@ -176,10 +176,6 @@
                                 <Setter TargetName="BorderEnabled" Property="Opacity" Value="1"/>
                                 <Setter Property="Foreground" Value="Black" />
                             </Trigger>
-
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" Value="#141414" />
-                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -238,12 +234,8 @@
 
                             <Trigger Property="IsEnabled" Value="True">
                                 <Setter TargetName="BorderEnabled" Property="Opacity" Value="1"/>
-                                <Setter Property="Foreground" Value="Black" />
                             </Trigger>
-
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" Value="#141414" />
-                            </Trigger>
+                            
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

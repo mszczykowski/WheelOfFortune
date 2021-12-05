@@ -27,7 +27,7 @@
                 </DockPanel>
             </Button>
 
-            <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10" Height="90" HorizontalAlignment="Center" VerticalAlignment="Top" Source="/Resources/Images/logo.png"/>
+            <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top" Source="/Resources/Images/logo.png"/>
             
 
             <Border Grid.Column="1" Width="800" Style="{StaticResource CategoryLabel}" VerticalAlignment="Bottom">
@@ -36,44 +36,46 @@
 
             <Grid Grid.Row="1" Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
                     <RowDefinition Height="0.7*"/>
+                    <RowDefinition Height="0.6*"/>
+                    <RowDefinition />
+                    <RowDefinition Height="0.6*"/>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="0.3*"/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 
-                <Label Content="Score" Grid.Row="0" Style="{StaticResource LabelPoints}"/>
-                <Border Grid.Row="1" Style="{StaticResource CategoryLabel}" Margin="10">
-                    <TextBlock Text="10000000$" Style="{StaticResource Numbers}"/>
+                <Label Content="Score" Grid.Row="1" Style="{StaticResource LabelPoints}"/>
+                <Border Grid.Row="2" Style="{StaticResource CategoryLabel}" Margin="10">
+                    <TextBlock Name="ScoreText" Text="0$" Style="{StaticResource Numbers}"/>
                 </Border>
-                <Label Content="Current prize" Grid.Row="2" Style="{StaticResource LabelPoints}"/>
-                <Border Grid.Row="3" Style="{StaticResource CategoryLabel}" Margin="10">
-                    <TextBlock Text="10000000$" Style="{StaticResource Numbers}"/>
+                <Label Content="Current prize" Grid.Row="3" Style="{StaticResource LabelPoints}"/>
+                <Border Grid.Row="4" Style="{StaticResource CategoryLabel}" Margin="10">
+                    <TextBlock Name="CurrentPrize" Text="0$" Style="{StaticResource Numbers}"/>
                 </Border>
-
-                <Button Name="spinButton" Grid.Row="5" Height="50" Width="170" Style="{StaticResource ButtonNormal}" Click="spinButton_Click">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Round 1" FontFamily="{StaticResource MainFont}" Foreground="{StaticResource FontGradient}" FontSize="30"/>
+                
+                <Button Name="spinButton" Grid.Row="6" Height="50" Width="170" Style="{StaticResource ButtonNormal}" Click="spinButton_Click">
                     <DockPanel>
                         <Image Height="24" Source="/Resources/Images/spinIcon.png"/>
-                        <Label Content="Spin"></Label>
+                        <Label Content="Spin" Foreground="Black"></Label>
                     </DockPanel>
                 </Button>
-                <Button Name="aswerButton" Grid.Row="6" Height="50" Width="170" Style="{StaticResource ButtonNormal}" Click="aswerButton_Click">
+                <Button Name="answerButton" Grid.Row="7" Height="50" Width="170" Style="{StaticResource ButtonNormal}" Click="aswerButton_Click">
                     <DockPanel>
                         <Image Height="24" Source="/Resources/Images/answerIcon.png"/>
-                        <Label Content="Answer" FontSize="28"></Label>
+                        <Label Content="Answer" FontSize="28" Foreground="Black"></Label>
                     </DockPanel>
                 </Button>
             </Grid>
 
             <StackPanel Grid.Row="2" VerticalAlignment="Top">
-                <Label Style="{StaticResource LabelPoints}" VerticalAlignment="Top" FontSize="20" Content="Vowel price: 1000$"></Label>
+                <Label Name="VowelPriceLabel" Style="{StaticResource LabelPoints}" VerticalAlignment="Top" FontSize="20" Content="Vowel price: 0$"></Label>
                 <Button Name="buyVowel" Height="50" Width="170" Style="{StaticResource ButtonNormal}" Click="buyVowel_Click">
                     <DockPanel>
                         <Image Height="24" Source="/Resources/Images/vowelIcon.png"/>
-                        <Label Content="Buy vowel" FontSize="20"></Label>
+                        <Label Content="Buy vowel" FontSize="20" Foreground="Black"></Label>
                     </DockPanel>
                 </Button>
             </StackPanel>
@@ -125,7 +127,13 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+
+
+                    <!--<Button Grid.Column="9" FontSize="18" Height="28" Name="backSpace" Content="Backspace" Style="{StaticResource ButtonNormal}">
+                    </Button>-->
                 </Grid>
+                
+                
 
                 <ItemsControl Grid.Row="2" Grid.Column="1" ItemsSource="{Binding}" BorderThickness="0">
                     <ItemsControl.ItemTemplate>
@@ -172,10 +180,10 @@
 
                 <DockPanel>
                     <Border Style="{StaticResource CategoryLabel}" HorizontalAlignment="Left" Margin="120 0 0 0" Width="300">
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Player" FontFamily="{StaticResource MainFont}" FontSize="28" Foreground="White"/>
+                        <Label Name="PlayerNameText" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Player" FontFamily="{StaticResource MainFont}" FontSize="28" Foreground="White"/>
                     </Border>
                     <Border Style="{StaticResource CategoryLabel}" HorizontalAlignment="Right" Margin="120 0 120 0" Width="300">
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Time" FontFamily="{StaticResource MainFont}" FontSize="28" Foreground="White"/>
+                        <Label Name="TimerText" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Time" FontFamily="{StaticResource MainFont}" FontSize="28" Foreground="White"/>
                     </Border>
                 </DockPanel>
             </StackPanel>
@@ -183,6 +191,36 @@
             <Canvas Grid.RowSpan="3" Grid.ColumnSpan="3">
                 
             </Canvas>
+        </Grid>
+
+        <Grid Name="RoundChangeGrid" Background="{StaticResource FullInfoBackground}">
+            <Grid Margin="200 100">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Name="RoundChangeRound" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Round X" FontFamily="{StaticResource MainFont}" FontSize="60" Foreground="{StaticResource FontGradient}"/>
+                <Label Grid.Row="1" Name="RoundChangeCategory" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Category: X" FontFamily="{StaticResource MainFont}" FontSize="40" Foreground="{StaticResource FontGradient}"/>
+                <Grid Name="Scoreboard" Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle Height="2" Grid.Row="1" Fill="White" Grid.ColumnSpan="2" VerticalAlignment="Bottom"  HorizontalAlignment="Stretch"/>
+                    
+                    <Label Grid.Row="0" Content="Player" Style="{StaticResource LabelPoints}"/>
+                    <Label Grid.Row="0" Grid.Column="1" Content="Score" Style="{StaticResource LabelPoints}"/>
+                </Grid>
+            </Grid>
         </Grid>
         
         <Grid Name="fadeGrid"/>
